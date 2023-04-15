@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyu80dtrpdyla"]
+
+[ext_resource type="Material" uid="uid://bmcixdofnm5x7" path="res://efx/processmat_explosion_clouds.tres" id="1_74wjv"]
+[ext_resource type="Script" path="res://efx/explosion.gd" id="1_hj2kf"]
+[ext_resource type="Material" uid="uid://wjid4kbak0jv" path="res://efx/mat_explosion.tres" id="2_ffv8h"]
+[ext_resource type="Material" uid="uid://iw6glkk5brjj" path="res://efx/processmat_explosion_base.tres" id="3_jl2wt"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8hj71"]
+material = ExtResource("2_ffv8h")
+radius = 0.15
+height = 0.3
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_vtj4i"]
+material = ExtResource("2_ffv8h")
+size = Vector3(1.25, 1.25, 1.25)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4ousl"]
+radius = 2.5
+
+[node name="explosion" type="Node3D"]
+script = ExtResource("1_hj2kf")
+
+[node name="clouds" type="GPUParticles3D" parent="."]
+transform = Transform3D(-1.31134e-08, -0.3, 0, 0.3, -1.31134e-08, 0, 0, 0, 0.3, 0, 0, 0)
+emitting = false
+amount = 50
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.84
+randomness = 0.17
+visibility_aabb = AABB(-7.34643, -42.1166, -47, 40.0971, 89.121, 94)
+process_material = ExtResource("1_74wjv")
+draw_pass_1 = SubResource("SphereMesh_8hj71")
+
+[node name="main" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+emitting = false
+amount = 5
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.84
+randomness = 0.17
+visibility_aabb = AABB(-5.00001, -5.22991, -5.22159, 10.3029, 10.4688, 10.4591)
+process_material = ExtResource("3_jl2wt")
+draw_pass_1 = SubResource("BoxMesh_vtj4i")
+
+[node name="Area3D" type="Area3D" parent="."]
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_4ousl")

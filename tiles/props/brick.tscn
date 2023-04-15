@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4206psouv26q"]
+
+[ext_resource type="Material" uid="uid://bjncgq2iudrqs" path="res://tiles/materials/mat_brick.tres" id="1_ndjrt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82xct"]
+size = Vector3(0.5, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qiht4"]
+material = ExtResource("1_ndjrt")
+size = Vector3(0.5, 0.5, 1)
+
+[node name="brick" type="RigidBody3D" groups=["destructible"]]
+mass = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_82xct")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_qiht4")

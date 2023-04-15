@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://3643kn62milb"]
+
+[ext_resource type="Script" path="res://tiles/block.gd" id="1_t0xy7"]
+[ext_resource type="PackedScene" uid="uid://cqjgs8fucccp2" path="res://tiles/block_ground.tscn" id="2_qgnst"]
+[ext_resource type="PackedScene" uid="uid://dbjtjywlarubs" path="res://tiles/props/tree.tscn" id="3_683t5"]
+
+[node name="trees" type="Node3D"]
+script = ExtResource("1_t0xy7")
+
+[node name="block_ground" parent="." instance=ExtResource("2_qgnst")]
+
+[node name="tree" parent="." instance=ExtResource("3_683t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.5, 0.75)
+
+[node name="tree2" parent="." instance=ExtResource("3_683t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.5, -1.25)
+
+[node name="tree3" parent="." instance=ExtResource("3_683t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, -0.75)
+
+[node name="tree4" parent="." instance=ExtResource("3_683t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 1.25)
+
+[node name="tree5" parent="." instance=ExtResource("3_683t5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -1.5)

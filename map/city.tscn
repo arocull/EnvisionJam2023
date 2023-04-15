@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://cuame5q4wgn55"]
+
+[ext_resource type="Script" path="res://map/citygen.gd" id="1_lkkut"]
+[ext_resource type="PackedScene" uid="uid://dfnqkynxy5xwk" path="res://tiles/prebuilds/tower.tscn" id="2_hsiny"]
+[ext_resource type="Texture2D" uid="uid://k58t0y0o3wu5" path="res://map/environment/skidpan_2k.exr" id="3_btxs5"]
+[ext_resource type="PackedScene" uid="uid://bnqe7swv3siy6" path="res://player/player.tscn" id="3_dte54"]
+[ext_resource type="PackedScene" uid="uid://3643kn62milb" path="res://tiles/prebuilds/trees.tscn" id="3_dytnb"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5mc8w"]
+panorama = ExtResource("3_btxs5")
+
+[sub_resource type="Sky" id="Sky_pkoej"]
+sky_material = SubResource("PanoramaSkyMaterial_5mc8w")
+
+[sub_resource type="Environment" id="Environment_jxy43"]
+background_mode = 1
+background_color = Color(0.458824, 1, 0.980392, 1)
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_pkoej")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w5xy7"]
+
+[node name="city" type="Node3D"]
+script = ExtResource("1_lkkut")
+tileScenes = Array[PackedScene]([ExtResource("2_hsiny"), ExtResource("3_dytnb")])
+tileWeights = Array[float]([1.0, 0.25])
+city_width = 6
+city_height = 6
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jxy43")
+
+[node name="player" parent="." instance=ExtResource("3_dte54")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("WorldBoundaryShape3D_w5xy7")

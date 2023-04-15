@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqjgs8fucccp2"]
+
+[ext_resource type="Material" uid="uid://cd2he3vd058cm" path="res://tiles/materials/mat_ground.tres" id="1_4ymco"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ynima"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kq1ny"]
+material = ExtResource("1_4ymco")
+size = Vector2(5, 5)
+
+[node name="block_ground" type="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ynima")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_kq1ny")
+skeleton = NodePath("")

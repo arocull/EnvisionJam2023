@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnqe7swv3siy6"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_v6ny5"]
+[ext_resource type="Script" path="res://player/movement.gd" id="2_rx1pb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eklvf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6aubi"]
+
+[node name="player" type="Node3D"]
+script = ExtResource("1_v6ny5")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+mass = 10.0
+script = ExtResource("2_rx1pb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_eklvf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_6aubi")
+skeleton = NodePath("../..")
+
+[node name="cam_parent" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="cam_parent"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 8, 4.5)

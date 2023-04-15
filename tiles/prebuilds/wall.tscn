@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo7lg1qeomqxr"]
+
+[ext_resource type="Script" path="res://tiles/block.gd" id="1_r2pry"]
+[ext_resource type="Material" uid="uid://lg2hnuiops6u" path="res://tiles/materials/mat_wall.tres" id="2_8i8dx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ulgcd"]
+size = Vector3(5, 100, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4se5"]
+size = Vector3(5, 8, 5)
+
+[node name="wall" type="Node3D"]
+script = ExtResource("1_r2pry")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+shape = SubResource("BoxShape3D_ulgcd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+material_override = ExtResource("2_8i8dx")
+mesh = SubResource("BoxMesh_u4se5")
