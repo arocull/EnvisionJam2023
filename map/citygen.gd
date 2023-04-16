@@ -13,7 +13,7 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	$player.teleport(Vector3(floor(float(city_width)) / 2, 1, floor(float(city_height)) / 2) * 5)
+	$player.teleport((Vector3(city_width, 1, city_height) * 2.5) - Vector3(2.5, 0, 2.5))
 	
 	# allocate array
 	tiles.resize(city_width * city_height)

@@ -16,3 +16,4 @@ func placeExplosion(at: Vector3):
 	var exp = EXPLOSION.instantiate()
 	exp.transform.origin = at
 	get_tree().current_scene.add_child(exp)
+	emit_signal("explosion_at", at)
