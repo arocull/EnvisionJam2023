@@ -20,8 +20,13 @@ background_color = Color(0.458824, 1, 0.980392, 1)
 background_energy_multiplier = 0.5
 sky = SubResource("Sky_pkoej")
 ambient_light_source = 3
-tonemap_mode = 2
+reflected_light_source = 2
+tonemap_mode = 3
+ssao_enabled = true
 glow_enabled = true
+adjustment_enabled = true
+adjustment_brightness = 1.25
+adjustment_contrast = 1.5
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w5xy7"]
 

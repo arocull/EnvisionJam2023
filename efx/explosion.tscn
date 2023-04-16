@@ -17,7 +17,7 @@ material = ExtResource("2_ffv8h")
 size = Vector3(1.25, 1.25, 1.25)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ousl"]
-radius = 2.5
+radius = 3.0
 
 [node name="explosion" type="Node3D"]
 script = ExtResource("1_hj2kf")

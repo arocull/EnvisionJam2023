@@ -10,7 +10,7 @@ const ROCKET = preload("res://player/rocket.tscn")
 @onready var attack_cooldown: float = max_attack_cooldown
 
 func _ready():
-	pass
+	$dust.emitting = false
 
 func _physics_process(delta):
 	if GameManager.phase != GameManager.PHASE.Game:
@@ -29,7 +29,11 @@ func _physics_process(delta):
 		grounded = true
 		if Input.is_action_just_pressed("move_jump"):
 			apply_central_impulse(hitResults.get("normal", Vector3.UP) * jump_force)
-
+		
+		$dust.global_position = hitResults.get("position")
+	
+	$dust.emitting = (linear_velocity.length() > 4) && grounded
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")

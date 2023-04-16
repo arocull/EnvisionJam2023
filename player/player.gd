@@ -9,10 +9,7 @@ func _ready():
 
 func _process(delta):
 	$cam_parent.global_transform.origin = $RigidBody3D.global_transform.origin
-	
 	$cam_parent/cam_offset/Camera3D.position = random_vector() * (min(shake, 200) / 1000)
-	
-	print(shake)
 	shake -= delta * shake_decay
 	if shake < 0:
 		shake = 0

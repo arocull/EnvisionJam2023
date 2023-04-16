@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnqe7swv3siy6"]
+[gd_scene load_steps=9 format=3 uid="uid://bnqe7swv3siy6"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_v6ny5"]
 [ext_resource type="Script" path="res://player/movement.gd" id="2_rx1pb"]
+[ext_resource type="Material" uid="uid://dxt4ao67ytwu1" path="res://efx/processmat_dust.tres" id="3_dc4qx"]
+[ext_resource type="Shader" uid="uid://cgkhe68qksn7t" path="res://efx/shader_dust.tres" id="4_cwgq3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eklvf"]
 radius = 0.6
@@ -9,6 +11,14 @@ radius = 0.6
 [sub_resource type="SphereMesh" id="SphereMesh_6aubi"]
 radius = 0.6
 height = 1.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0qm54"]
+render_priority = 0
+shader = ExtResource("4_cwgq3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_oaob4"]
+material = SubResource("ShaderMaterial_0qm54")
+size = Vector3(0.2, 0.2, 0.2)
 
 [node name="player" type="Node3D"]
 script = ExtResource("1_v6ny5")
@@ -29,6 +39,12 @@ shape = SubResource("SphereShape3D_eklvf")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("SphereMesh_6aubi")
 skeleton = NodePath("../..")
+
+[node name="dust" type="GPUParticles3D" parent="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+amount = 20
+process_material = ExtResource("3_dc4qx")
+draw_pass_1 = SubResource("BoxMesh_oaob4")
 
 [node name="cam_parent" type="Node3D" parent="."]
 
