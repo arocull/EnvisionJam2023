@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv2k5hie54cfi"]
+
+[ext_resource type="Script" path="res://player/rocket.gd" id="1_o4mp4"]
+[ext_resource type="ArrayMesh" uid="uid://qar5fimgj7ti" path="res://player/rocket.obj" id="2_54n72"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wnd6v"]
+radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34y75"]
+albedo_color = Color(0.941176, 0.486275, 0.027451, 1)
+metallic = 1.0
+roughness = 0.76
+emission_enabled = true
+emission = Color(0.839216, 0.486275, 0.0980392, 1)
+emission_energy_multiplier = 3.83
+
+[node name="rocket" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 2
+mass = 2.0
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+freeze = true
+script = ExtResource("1_o4mp4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wnd6v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("2_54n72")
+surface_material_override/0 = SubResource("StandardMaterial3D_34y75")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -11,6 +11,3 @@ func _input(event):
 	if event.is_action("quit"):
 		get_tree().current_scene.score()
 		get_tree().quit()
-	
-	if event.is_action("attack"):
-		$RigidBody3D.fire = true

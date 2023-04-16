@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 EFX="*res://efx/efx_manager.gd"
+GameManager="*res://ui/game_manager.gd"
 
 [input]
 
@@ -56,3 +57,13 @@ attack={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="all"
+3d_physics/layer_2="destructible"
+3d_physics/layer_3="player"
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=1

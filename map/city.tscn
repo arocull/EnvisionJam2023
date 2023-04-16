@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuame5q4wgn55"]
+[gd_scene load_steps=12 format=3 uid="uid://cuame5q4wgn55"]
 
 [ext_resource type="Script" path="res://map/citygen.gd" id="1_lkkut"]
 [ext_resource type="PackedScene" uid="uid://dfnqkynxy5xwk" path="res://tiles/prebuilds/tower.tscn" id="2_hsiny"]
 [ext_resource type="Texture2D" uid="uid://k58t0y0o3wu5" path="res://map/environment/skidpan_2k.exr" id="3_btxs5"]
 [ext_resource type="PackedScene" uid="uid://bnqe7swv3siy6" path="res://player/player.tscn" id="3_dte54"]
 [ext_resource type="PackedScene" uid="uid://3643kn62milb" path="res://tiles/prebuilds/trees.tscn" id="3_dytnb"]
+[ext_resource type="PackedScene" uid="uid://bqy26krqprk6p" path="res://ui/ui_main.tscn" id="6_3hs46"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5mc8w"]
 panorama = ExtResource("3_btxs5")
@@ -22,6 +23,9 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w5xy7"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ghe62"]
+plane = Plane(0, -1, 0, 0)
 
 [node name="city" type="Node3D"]
 script = ExtResource("1_lkkut")
@@ -41,6 +45,18 @@ environment = SubResource("Environment_jxy43")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="floor" type="StaticBody3D" parent="."]
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
 shape = SubResource("WorldBoundaryShape3D_w5xy7")
+
+[node name="ceiling" type="StaticBody3D" parent="."]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+shape = SubResource("WorldBoundaryShape3D_ghe62")
+
+[node name="ui_main" parent="." instance=ExtResource("6_3hs46")]

@@ -31,7 +31,8 @@ height = 1.5
 
 [node name="tree" type="Node3D"]
 
-[node name="trunk" type="RigidBody3D" parent="."]
+[node name="trunk" type="RigidBody3D" parent="." groups=["destructible"]]
+collision_layer = 3
 mass = 4.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trunk"]
@@ -40,8 +41,9 @@ shape = SubResource("CylinderShape3D_in7vd")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="trunk"]
 mesh = SubResource("CylinderMesh_x58mf")
 
-[node name="leaves" type="RigidBody3D" parent="."]
+[node name="leaves" type="RigidBody3D" parent="." groups=["destructible"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 3
 mass = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="leaves"]

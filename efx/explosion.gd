@@ -15,6 +15,7 @@ func _physics_process(delta):
 	if not exploded:
 		exploded = true
 		var bodies = $Area3D.get_overlapping_bodies()
+		print(bodies.size())
 		for b in bodies:
 			if b is RigidBody3D:
 				var offset: Vector3 = b.global_position - global_position

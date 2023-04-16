@@ -42,7 +42,7 @@ func prep_score():
 			bricks.append(child)
 			startTransforms.append(child.global_transform)
 
-func score():
+func score() -> float:
 	var sum: float = 0
 	var total: float = 0
 	for i in range(0,bricks.size()):
@@ -52,3 +52,4 @@ func score():
 		total += b.mass
 	
 	print_debug("Score: ", sum / total)
+	return sum / total

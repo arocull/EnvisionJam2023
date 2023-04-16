@@ -1,14 +1,20 @@
 extends RigidBody3D
 
+const ROCKET = preload("res://player/rocket.tscn")
+
 @export var force_movement: float = 250
 @export var jump_force: float = 50
+@export var max_attack_cooldown: float = 0.1
 
-@onready var fire: bool = false
+@onready var attack_cooldown: float = max_attack_cooldown
 
 func _ready():
 	pass
 
 func _physics_process(delta):
+	if GameManager.phase != GameManager.PHASE.Game:
+		return
+	
 	var ray = PhysicsRayQueryParameters3D.new()
 	ray.collision_mask = 1 << 0
 	ray.from = global_transform.origin
@@ -29,11 +35,12 @@ func _physics_process(delta):
 
 	apply_central_force(Vector3(input_dir.x, 0, input_dir.y) * force_movement)
 	
-	if fire:
+	attack_cooldown -= delta
+	if attack_cooldown <= 0 and Input.is_action_pressed("attack"):
 		fire_rocket()
 
 func fire_rocket():
-	fire = false
+	attack_cooldown = max_attack_cooldown
 	var mousePos = get_viewport().get_mouse_position()
 	var normal = get_viewport().get_camera_3d().project_ray_normal(mousePos)
 	var cam: Camera3D = get_viewport().get_camera_3d()
@@ -46,14 +53,16 @@ func fire_rocket():
 	var depthCastResult = get_world_3d().direct_space_state.intersect_ray(depthCast)
 	if depthCastResult.has("position"):
 		var pos: Vector3 = depthCastResult.get("position")
-		
-		var guncast = PhysicsRayQueryParameters3D.create(
-			global_transform.origin,
-			pos,
-		)
-		guncast.hit_back_faces = false
-		guncast.hit_from_inside = false
-		
-		var guncastResult = get_world_3d().direct_space_state.intersect_ray(depthCast)
-		if guncastResult.has("position"):
-			EFX.call_deferred("emit_signal", "gun", global_position, guncastResult.get("position"))
+
+		var t: Transform3D = Transform3D()
+		t.origin = global_position
+		pos.y = t.origin.y
+		t = t.looking_at(pos).orthonormalized()
+		apply_central_impulse(t.basis.z * 25)
+		call_deferred("spawn_rocket", t)
+
+func spawn_rocket(t: Transform3D):
+	var r = ROCKET.instantiate()
+	
+	add_child(r)
+	r.global_transform = t
