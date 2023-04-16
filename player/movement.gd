@@ -4,6 +4,7 @@ const ROCKET = preload("res://player/rocket.tscn")
 
 @export var force_movement: float = 250
 @export var jump_force: float = 50
+@export var knockback_force: float = 40
 @export var max_attack_cooldown: float = 0.1
 
 @onready var attack_cooldown: float = max_attack_cooldown
@@ -58,7 +59,7 @@ func fire_rocket():
 		t.origin = global_position
 		pos.y = t.origin.y
 		t = t.looking_at(pos).orthonormalized()
-		apply_central_impulse(t.basis.z * 25)
+		apply_central_impulse(t.basis.z * 40)
 		call_deferred("spawn_rocket", t)
 
 func spawn_rocket(t: Transform3D):

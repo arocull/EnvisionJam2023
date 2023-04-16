@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_5fxdf")
 
 [node name="score_screen" parent="." instance=ExtResource("1_523oj")]
+visible = false
 layout_mode = 1
 
 [node name="countdown" type="Label" parent="."]

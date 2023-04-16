@@ -4,7 +4,7 @@ func _ready():
 	GameManager.connect("earn_score", show_score)
 
 func show_score(newScore: float):
-	$score_screen/Score.text = str(roundf(newScore * 1000))
+	$score_screen/Score.text = str(newScore)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

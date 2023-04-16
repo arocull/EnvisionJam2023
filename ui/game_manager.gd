@@ -10,7 +10,7 @@ signal enter_phase(newPhase: int)
 signal earn_score(score: float)
 
 var timer: float = 3
-var lastScore: float = 0
+var lastScore: int = 0
 var phase: int = PHASE.Startup
 
 func _process(delta):

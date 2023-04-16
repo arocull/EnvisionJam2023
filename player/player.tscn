@@ -4,8 +4,11 @@
 [ext_resource type="Script" path="res://player/movement.gd" id="2_rx1pb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eklvf"]
+radius = 0.6
 
 [sub_resource type="SphereMesh" id="SphereMesh_6aubi"]
+radius = 0.6
+height = 1.2
 
 [node name="player" type="Node3D"]
 script = ExtResource("1_v6ny5")
@@ -13,8 +16,12 @@ script = ExtResource("1_v6ny5")
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 5
 collision_mask = 5
-mass = 10.0
+mass = 50.0
 script = ExtResource("2_rx1pb")
+force_movement = 1250.0
+jump_force = 250.0
+knockback_force = 200.0
+max_attack_cooldown = 0.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_eklvf")
@@ -25,5 +32,7 @@ skeleton = NodePath("../..")
 
 [node name="cam_parent" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="cam_parent"]
+[node name="cam_offset" type="Node3D" parent="cam_parent"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 8, 4.5)
+
+[node name="Camera3D" type="Camera3D" parent="cam_parent/cam_offset"]

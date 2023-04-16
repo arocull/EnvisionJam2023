@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cuame5q4wgn55"]
+[gd_scene load_steps=13 format=3 uid="uid://cuame5q4wgn55"]
 
 [ext_resource type="Script" path="res://map/citygen.gd" id="1_lkkut"]
 [ext_resource type="PackedScene" uid="uid://dfnqkynxy5xwk" path="res://tiles/prebuilds/tower.tscn" id="2_hsiny"]
+[ext_resource type="PackedScene" uid="uid://cqjgs8fucccp2" path="res://tiles/block_ground.tscn" id="2_jgq3a"]
 [ext_resource type="Texture2D" uid="uid://k58t0y0o3wu5" path="res://map/environment/skidpan_2k.exr" id="3_btxs5"]
 [ext_resource type="PackedScene" uid="uid://bnqe7swv3siy6" path="res://player/player.tscn" id="3_dte54"]
 [ext_resource type="PackedScene" uid="uid://3643kn62milb" path="res://tiles/prebuilds/trees.tscn" id="3_dytnb"]
@@ -29,10 +30,10 @@ plane = Plane(0, -1, 0, 0)
 
 [node name="city" type="Node3D"]
 script = ExtResource("1_lkkut")
-tileScenes = Array[PackedScene]([ExtResource("2_hsiny"), ExtResource("3_dytnb")])
+tileScenes = Array[PackedScene]([ExtResource("2_jgq3a"), ExtResource("2_hsiny"), ExtResource("3_dytnb")])
 tileWeights = Array[float]([1.0, 0.25])
-city_width = 6
-city_height = 6
+city_width = 5
+city_height = 5
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)

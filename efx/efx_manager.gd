@@ -2,6 +2,8 @@ extends Node
 
 const EXPLOSION = preload("res://efx/explosion.tscn")
 
+signal explosion_at(pos: Vector3)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

@@ -1,8 +1,8 @@
 extends Node3D
 class_name Explosion
 
-@export var force: float = 50
-@export var maxDistance: float = 3
+@export var force: float = 55
+@export var maxDistance: float = 3.5
 @onready var duration: float = 1.5
 @onready var exploded: bool = false
 
