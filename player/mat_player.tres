@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://ca0a8i158ictq"]
+
+[ext_resource type="Shader" path="res://player/mat_player.gdshader" id="1_4vasd"]
+
+[sub_resource type="Gradient" id="Gradient_njjup"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gq2nk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2hg5o"]
+width = 1024
+height = 1024
+color_ramp = SubResource("Gradient_njjup")
+noise = SubResource("FastNoiseLite_gq2nk")
+
+[sub_resource type="Gradient" id="Gradient_8p2dt"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3scdt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rumb0"]
+width = 1024
+height = 1024
+color_ramp = SubResource("Gradient_8p2dt")
+noise = SubResource("FastNoiseLite_3scdt")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4vasd")
+shader_parameter/coverage = 0.5
+shader_parameter/noise = SubResource("NoiseTexture2D_2hg5o")
+shader_parameter/sparkles = SubResource("NoiseTexture2D_rumb0")

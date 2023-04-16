@@ -25,8 +25,9 @@ tonemap_mode = 3
 ssao_enabled = true
 glow_enabled = true
 adjustment_enabled = true
-adjustment_brightness = 1.25
-adjustment_contrast = 1.5
+adjustment_brightness = 1.1
+adjustment_contrast = 1.3
+adjustment_saturation = 1.1
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w5xy7"]
 
